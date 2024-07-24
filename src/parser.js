@@ -67,12 +67,16 @@ function detectAndExtractKillDetails(line) {
 }
 
 export function addDataToMatch(currentMatch, killer, victim) {
-  if (player(killer)) {
+  if (killer === victim) {
+    decrementVictimKillCount(currentMatch, victim);
+  } else if (player(killer)) {
     incrementKillerKillCount(currentMatch, killer);
   } else {
     decrementVictimKillCount(currentMatch, victim);
   }
-
+  if (player(killer)) {
+    ensurePlayerInCurrentMatch(currentMatch, killer);
+  }
   ensurePlayerInCurrentMatch(currentMatch, victim);
 }
 
@@ -91,4 +95,7 @@ function decrementVictimKillCount(currentMatch, victim) {
 
 function ensurePlayerInCurrentMatch(currentMatch, player) {
   currentMatch.players.add(player);
+  if (currentMatch.kills[player] === undefined) {
+    currentMatch.kills[player] = 0;
+  }
 }

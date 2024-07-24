@@ -53,5 +53,5 @@ export const generatePlayerRanking = (games) => {
 };
 
 // Call the main function to generate the report
-generateReport();
+
 

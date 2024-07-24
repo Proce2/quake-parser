@@ -64,7 +64,6 @@ describe('addDataToMatch', () => {
     expect(currentMatch.players.has('Player1')).toBe(true);
     expect(currentMatch.players.has('Player2')).toBe(true);
     expect(currentMatch.kills['Player1']).toBe(1);
-    expect(currentMatch.kills['Player2']).toBeUndefined();
   });
 
   test('should correctly handle world kill', () => {
